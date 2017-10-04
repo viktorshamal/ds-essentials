@@ -27,7 +27,7 @@
     "gh-pages-deploy": "^0.4.2"
   },
   "gh-pages-deploy": {
-    "staticpath": "build",
+    "staticpath": "dist",
     "prep": [
       "build"
     ]
