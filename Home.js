@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client"
 import katex from "katex/dist/katex"
 import Clipboard from "clipboard"
+import isNode from 'detect-node'
 
-new Clipboard('.equation')
+if(!isNode) {
+    new Clipboard('.equation')    
+}
 
 const Equation = ({id, title, latex}) => 
     <div className='equation' data-clipboard-target={'#latex-' + id} key={id}>
