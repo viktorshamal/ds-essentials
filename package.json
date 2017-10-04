@@ -3,7 +3,7 @@
   "scripts": {
     "start": "phenomic start",
     "build": "phenomic build",
-    "deploy": "gp-pages-deploy"
+    "deploy": "gh-pages-deploy"
   },
   "devDependencies": {
     "@phenomic/cli": "^1.0.0-alpha.1",
