@@ -1,5 +1,4 @@
 ---
 title: Probability mass function
-latex: x^2
-description: It's cool
+latex: p(a) = P(X=a) \quad \text{for} -\infty \lt a \lt \infty
 ---

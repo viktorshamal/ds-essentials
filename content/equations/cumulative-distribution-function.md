@@ -1,5 +1,7 @@
 ---
 title: Cumulative distribution function
-latex: x^2 + 5 \cdot 10^5
-description: It's cummulative
+latex: F(a) = P(X \le a) \quad \text{for} -\infty \lt a \lt \infty
 ---
+Function
+* It's cummulative
+* It's distributive

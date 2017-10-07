@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { createContainer, query } from "@phenomic/preset-react-app/lib/client"
+import { createContainer, query, BodyRenderer } from "@phenomic/preset-react-app/lib/client"
 import katex from "katex/dist/katex"
 import Clipboard from "clipboard"
 import isNode from 'detect-node'
@@ -10,7 +10,7 @@ if(!isNode) {
 }
 
 const EquationWrapper = styled.div`
-    padding: 0 2rem 1rem 2rem;
+    padding: 0 1rem;
     border: 1px solid;
     margin: 1rem 0 1rem 0;
 
@@ -24,11 +24,11 @@ const EquationWrapper = styled.div`
     }
 `
 
-const Equation = ({id, title, latex, description}) => 
+const Equation = ({id, title, latex, body}) => 
     <EquationWrapper className='equation' data-clipboard-target={'#latex-' + id} key={id}>
-        <p>Title: <strong>{title || id}</strong></p>
-        <p>Description: {description}</p>
+        <p><strong>{title || id}</strong></p>
         <div dangerouslySetInnerHTML={{__html: katex.renderToString(latex)}}></div>
+        <BodyRenderer>{body}</BodyRenderer>
         <span className='hidden' id={'latex-' + id}>{latex}</span>
     </EquationWrapper>
 
@@ -58,16 +58,16 @@ class EquationList extends React.Component {
         this.applyFilter.bind(this)
     }
 
-    applyFilter = (filter) => {
-        if(!filter) return this.setState({filteredEquations: null})            
+    applyFilter = (searchTerm) => {
+        if(!searchTerm) return this.setState({filteredEquations: null})            
 
         const { isLoading, equations } = this.props
 
         const safeEquations = retriveListSafe(isLoading, equations)
 
         const filteredEquations = safeEquations && safeEquations.filter(equation => 
-           equation.title.includes(filter) ||
-           equation.description.includes(filter)
+           equation.title.includes(searchTerm) ||
+           equation.description.includes(searchTerm)
         )
         this.setState({filteredEquations})
     }
