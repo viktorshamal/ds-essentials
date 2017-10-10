@@ -67,7 +67,7 @@ class EquationList extends React.Component {
 
         const filteredEquations = safeEquations && safeEquations.filter(equation => 
            equation.title.includes(searchTerm) ||
-           equation.description.includes(searchTerm)
+           equation.latex.includes(searchTerm)
         )
         this.setState({filteredEquations})
     }
