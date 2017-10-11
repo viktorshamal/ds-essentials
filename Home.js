@@ -25,10 +25,19 @@ const EquationWrapper = styled.div`
     }
 `
 
+const latexToHtml = latex => {
+    if(Array.isArray(latex)){
+        return latex.map(line => katex.renderToString(line)).join("<br/>")
+    } else {
+        return katex.renderToString(latex)
+    }
+}
+    
+
 const Equation = ({id, title, latex, body}) => 
     <EquationWrapper className='equation' data-clipboard-target={'#latex-' + id} key={id}>
         <p><strong>{title || id}</strong></p>
-        <div dangerouslySetInnerHTML={{__html: katex.renderToString(latex)}}></div>
+        <div dangerouslySetInnerHTML={{__html: latexToHtml(latex)}}></div>
         <BodyRenderer>{body}</BodyRenderer>
         <span className='hidden' id={'latex-' + id}>{latex}</span>
     </EquationWrapper>
