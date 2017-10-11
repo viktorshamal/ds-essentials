@@ -4,6 +4,7 @@ import { createContainer, query, BodyRenderer } from "@phenomic/preset-react-app
 import katex from "katex/dist/katex"
 import Clipboard from "clipboard"
 import isNode from 'detect-node'
+import GithubLogo from './GithubLogo'
 
 if(!isNode) {
     new Clipboard('.equation')    
@@ -84,6 +85,7 @@ class EquationList extends React.Component {
 
         return (
             <Background>
+                <GithubLogo/> 
                 <h1>Equations</h1>
                 <input type="text" onChange={this.handleInputChange}/>
                 {isLoading && "Loading..."}
